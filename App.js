@@ -1,33 +1,36 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList} from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native';
 import Stocks from './screens/stocks';
 import Header from './components/header';
-import Items from './components/stockitems';
+import StockItems from "./components/StockItems"
 
-export default function App() {
 
-  const stocks = useState([
-    {id:'1', article: 'Bouteille de lait', quantity:5},
-    {id:'2', article: 'Pain de mie', quantity:3},
-    {id:'3', article: 'Mikados', quantity:10},
-    {id:'4', article: "Huile d'olive", quantity:3}
-  ])
+const App = () => {
+
+  const stocks = [
+    { key: '1', article: 'Bouteille de lait', quantity: 5 },
+    { key: '2', article: 'Pain de mie', quantity: 3 },
+    { key: '3', article: 'Mikados', quantity: 10 },
+    { key: '4', article: "Huile d'olive", quantity: 3 },
+    { key: '5', article: "Papier toilette", quantity: 4 },
+    { key: '6', article: "Céréales", quantity: 2 },
+    { key: '7', article: "Pack d'eau", quantity: 4 }
+  ]
+
   return (
+
     <View>
-      <Header title="App title"/>
+      <Header title="App title" />
       <View style={styles.container}>
         <View style={styles.content}>
-          <Stocks/>
-          <View>
-            <FlatList
-            data={stocks}
-            renderItem={({ item }) => (
-              <Items item={item}/>
+          <Stocks />
+          <View style={styles.list}>
+            {stocks.map((e, i) => {
+              return (
+                <StockItems item={e} key={i} />
               )
-            }      
-            keyExtractor={(item,id)=>id.toString()}
-            />
+            })}
           </View>
         </View>
       </View>
@@ -42,10 +45,19 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  content : {
+  content: {
     padding: 40,
   },
-  list:{
-    marginTop: 20
+  list: {
+    marginTop: 30
+  },
+  items: {
+    padding: 25,
+    marginTop: 16,
+    borderColor: '#ccc2a6',
+    borderWidth: 1,
+    color: "black"
   }
 });
+
+export default App
