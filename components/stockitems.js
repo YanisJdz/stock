@@ -12,19 +12,19 @@ const StockItems = ({item}) => {
 }
 const alertBtn = ({item}) =>
 Alert.alert(
-  "Salut",
-  "Mélyne",
+  "Nom article",
+  "Quatité = ",
   [
     {
-      text: "Ask me later",
-      onPress: () => console.log("Ask me later pressed")
+      text: "Modifier",
+      onPress: () => console.log("Modify Pressed")
     },
     {
-      text: "Cancel",
+      text: "Annuler",
       onPress: () => console.log("Cancel Pressed"),
       style: "cancel"
     },
-    { text: "OK", onPress: () => console.log("OK Pressed") }
+    { text: "Supprimer", onPress: () => console.log("Delete Pressed") }
   ],
   { cancelable: false }
 );
