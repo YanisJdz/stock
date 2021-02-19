@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Text, View, StyleSheet, Pressable, Alert } from 'react-native';
+import React from "react";
+import { Text, View, StyleSheet, Pressable } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 
 
@@ -15,10 +15,13 @@ const tab_Course = [
   { id: "9", nom_produit: "Orange" }
 ]
 
-function showDialog() {
+const showDialog = (item) => {
   let number = Number(prompt("La quantité du produit acheté :"));
-  if(typeof number === "number") {
-    console.log("Vous avez acheté "+number+" quantité");
+  if(typeof number === "number" && !number == 0) {
+    // Ajout de la quantité dans le stock
+    // Suppression du produit acheté de la liste de course
+    
+    console.log("Vous avez acheté "+number+" quantité de "+item);
   }
 };
 
@@ -29,7 +32,7 @@ const Liste_Course = () => {
       <FlatList data={tab_Course} 
       keyExtractor={(item) => item.id} 
       renderItem={({item}) => <Text style={{fontSize : 22, padding: 9}}>{item.nom_produit}
-      <Pressable onPress={this.showDialog}><Text>  ✅   </Text>
+      <Pressable onPress={() => showDialog(item.nom_produit)}><Text>  ✅   </Text>
       </Pressable></Text>
       }/>
     </View>
@@ -43,9 +46,6 @@ const styles = StyleSheet.create({
       paddingTop: 90, 
       alignItems: "center",
       justifyContent: "center",
-    },
-    dialog: {
-      position:"absolute"
     }
 })
 
