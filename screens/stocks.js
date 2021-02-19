@@ -4,6 +4,7 @@ import Form from '../components/Form';
 import Header from '../components/header';
 import StockItems from "../components/StockItems"
 import Footer from '../components/footer'
+import { FlatList } from 'react-native-gesture-handler';
 
 
 const App = ({navigation}) => {
@@ -29,14 +30,16 @@ const App = ({navigation}) => {
     <ScrollView style={styles.view}>
       <Header title='Liste de stocks' navigation={navigation} />
       <View style={styles.container}>
-        <View>
+        <View style={styles.content}>
             <Form />
             <View style={styles.list}>
-                {stocks.map((e, i) => {
-                return (
-                    <StockItems item={e} key={i} /> 
-                 )
-                })}
+                <FlatList
+                    data={stocks}
+                    renderItem={({item}) => 
+                    <StockItems item={item} /> 
+                }
+                    keyExtractor={item => item.id}
+                />
             </View>
         </View>
       </View>
@@ -51,6 +54,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  content: {
+    paddingTop: 50,
   },
   view:{
       backgroundColor: '#fff'
