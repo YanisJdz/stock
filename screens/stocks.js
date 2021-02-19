@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
 import Form from '../components/Form';
 import Header from '../components/header';
 import StockItems from "../components/StockItems"
+import Footer from '../components/footer'
 
 
 const App = ({navigation}) => {
@@ -25,7 +26,7 @@ const App = ({navigation}) => {
 
   return (
 
-    <ScrollView>
+    <ScrollView style={styles.view}>
       <Header title='Liste de stocks' navigation={navigation} />
       <View style={styles.container}>
         <View>
@@ -39,6 +40,7 @@ const App = ({navigation}) => {
             </View>
         </View>
       </View>
+      <Footer/>
     </ScrollView>
   );
 }
@@ -48,7 +50,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
+  },
+  view:{
+      backgroundColor: '#fff'
   }
 });
 

@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     container: {
         height: 50, 
         width: 300,
-        margin: 10
+        margin: 10,
     },
     items:{
         padding: 25,

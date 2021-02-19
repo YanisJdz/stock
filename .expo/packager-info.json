@@ -1,7 +1,7 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19004,
-  "packagerPort": 19004,
+  "expoServerPort": 19005,
+  "packagerPort": 19005,
   "expoServerNgrokUrl": "https://rs-ygd.yanisjdz.stock.exp.direct",
   "packagerNgrokUrl": "https://packager.rs-ygd.yanisjdz.stock.exp.direct",
   "ngrokPid": 27669,
