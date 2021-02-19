@@ -1,0 +1,1 @@
+{"ast":null,"code":"import Prompt from \"./Prompt\";\nexport default Prompt;","map":{"version":3,"sources":["/Users/alfa/Documents/L1-Dev/LABDAY/stock/node_modules/react-native-prompt/src/index.js"],"names":["Prompt"],"mappings":"AAAA,OAAOA,MAAP;AACA,eAAeA,MAAf","sourcesContent":["import Prompt from './Prompt';\nexport default Prompt;\n"]},"metadata":{},"sourceType":"module"}
