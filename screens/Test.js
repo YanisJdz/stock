@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity } from 'react-native';
-import Form from '../components/Form';
+import Form from '../components/form';
 import Header from '../components/header';
 import StockItems from "../components/StockItems"
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
-import Form from '../components/Form';
+import Form from '../components/form';
 import Header from '../components/header';
-import StockItems from "../components/StockItems"
+import StockItems from "../components/stockitems"
 import Footer from '../components/footer'
 import { FlatList } from 'react-native-gesture-handler';
 
