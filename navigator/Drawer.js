@@ -10,7 +10,7 @@ import {
 import { Platform } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import Stocks from '../screens/stocks';
-import Test from '../screens/Test';
+import cart from '../screens/cart';
 
 function CustomDrawerContent(props) {
   return (
@@ -37,8 +37,8 @@ const Drawer = createDrawerNavigator();
 function MyDrawer() {
   return (
     <Drawer.Navigator backBehavior="history" drawerContent={props => <CustomDrawerContent {...props} />}>
-      <Drawer.Screen name="Stocks" component={Stocks} />
-      <Drawer.Screen name="Test" component={Test} />
+      <Drawer.Screen name="Mes stocks" component={Stocks} />
+      <Drawer.Screen name="Ma liste" component={cart} />
     </Drawer.Navigator>
   );
 }
