@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, Alert, View} from 'react-native'
 
-const StockItems = ({item}) => {
+const StockItems = ({navigation, item}) => {
     return (
             <View style={styles.container}>
                 <TouchableOpacity onPress={alertBtn}>
@@ -31,11 +31,13 @@ Alert.alert(
 
 const styles = StyleSheet.create({
     container: {
-        height: 50
+        height: 50, 
+        width: 300,
+        margin: 10
     },
     items:{
         padding: 25,
-        marginTop:16,
+        textAlign: 'center',
         borderColor:'#ccc2a6',
         borderWidth: 1
     }

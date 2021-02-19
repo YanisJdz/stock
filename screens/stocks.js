@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, FlatList, Button } from 'react-native';
+import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
 import Form from '../components/Form';
 import Header from '../components/header';
 import StockItems from "../components/StockItems"
@@ -14,27 +14,32 @@ const App = ({navigation}) => {
     { key: '4', article: "Huile d'olive", quantity: 3 },
     { key: '5', article: "Papier toilette", quantity: 4 },
     { key: '6', article: "Céréales", quantity: 2 },
-    { key: '7', article: "Pack d'eau", quantity: 4 }
+    { key: '7', article: "Pack d'eau", quantity: 4 },
+    { key: '8', article: "Pack d'eau", quantity: 4 },
+    { key: '9', article: "Pack d'eau", quantity: 4 },
+    { key: '10', article: "Pack d'eau", quantity: 4 },
+    { key: '11', article: "Pack d'eau", quantity: 4 },
+    { key: '12', article: "Pack d'eau", quantity: 4 },
+    { key: '13', article: "Pack d'eau", quantity: 4 },
   ]
 
   return (
 
-      <View>
-      <Header title='Liste de stocks'/>
+    <ScrollView>
+      <Header title='Liste de stocks' navigation={navigation} />
       <View style={styles.container}>
-        <View style={styles.content}>
+        <View>
             <Form />
             <View style={styles.list}>
                 {stocks.map((e, i) => {
                 return (
-                    <StockItems item={e} key={i} />
+                    <StockItems item={e} key={i} /> 
                  )
                 })}
             </View>
-            <Button title="Go back" onPress={() => navigation.goBack()}/>
         </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
@@ -44,19 +49,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  content: {
-    padding: 40,
-  },
-  list: {
-    marginTop: 30
-  },
-  items: {
-    padding: 25,
-    marginTop: 16,
-    borderColor: '#ccc2a6',
-    borderWidth: 1,
-    color: "black"
   }
 });
 

@@ -9,7 +9,7 @@ import {
 } from '@react-navigation/drawer';
 import { Platform } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
-import Stocks from '../screens/Stocks';
+import Stocks from '../screens/stocks';
 import Test from '../screens/Test';
 
 function CustomDrawerContent(props) {

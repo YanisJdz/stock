@@ -10,7 +10,7 @@ const Test = ({navigation}) => {
   return (
 
     <View>
-      <Header title='Page test'/>
+      <Header title='Page test' navigation={navigation} />
       <View style={styles.container}>
           <Text>Salut : Test</Text>
           <Button title="Go back" onPress={() => navigation.goBack()} />
