@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Text, View, StyleSheet, Pressable, Alert, ScrollView } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import Header from '../components/header';
-import Footer from '../components/footer'
+import Footer from '../components/footer';
+
 
 
 const tab_Course = [ 
