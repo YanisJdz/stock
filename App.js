@@ -5,7 +5,7 @@ import DrawerNavigation from './navigator/Drawer';
 export default function App() {
     return (
         <SafeAreaProvider>
-            <DrawerNavigation />
+            <DrawerNavigation/>
         </SafeAreaProvider>
     );
 }

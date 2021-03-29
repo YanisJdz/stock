@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, Button } from 'react-native';
-import Form from '../components/form';
+import Form from '../components/Form';
 import Header from '../components/header';
 import StockItems from "../components/stockitems"
 import Footer from '../components/footer'
@@ -38,7 +38,7 @@ const App = ({navigation}) => {
                     renderItem={({item}) => 
                     <StockItems item={item} /> 
                 }
-                    keyExtractor={item => item.id}
+                    keyExtractor={item => item.key}
                 />
             </View>
         </View>

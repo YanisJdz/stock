@@ -9,7 +9,6 @@ const header = ({navigation, title}) =>  {
     return (
         <View style={styles.header}>
             <TouchableOpacity style={styles.icons}>
-            {/* <TouchableOpacity onPress={openMenu} style={styles.icons}> */}
                 <Ionicons name="md-menu" size={28} color="white" />
             </TouchableOpacity>
             <Text style={styles.title}>{title}</Text>
