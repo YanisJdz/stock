@@ -4,7 +4,7 @@ import { StyleSheet, Text, TouchableOpacity, Alert, View} from 'react-native'
 const StockItems = ({navigation, item}) => {
     return (
             <View style={styles.container}>
-                <TouchableOpacity onPress={alertBtn}>
+                <TouchableOpacity onPress={() => alertBtn({item}) }>
                     <Text style={styles.items}>{item.article} (Qte:{item.quantity})</Text>
                 </TouchableOpacity>
             </View>
@@ -12,12 +12,12 @@ const StockItems = ({navigation, item}) => {
 }
 const alertBtn = ({item}) =>
 Alert.alert(
-  "Nom article",
-  "Quatité = ",
+  item.article,
+  "Quantité = "+item.quantity,
   [
     {
       text: "Modifier",
-      onPress: () => console.log("Modify Pressed")
+      onPress: () => console.log(item)
     },
     {
       text: "Annuler",
