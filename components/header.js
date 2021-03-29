@@ -1,15 +1,17 @@
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { TouchableHighlight } from "react-native-gesture-handler";
 
 const header = ({navigation, title}) =>  {
-    const openMenu = () => {
-        navigation.openDrawer();
-      };
+
     return (
+
         <View style={styles.header}>
-            <TouchableOpacity style={styles.icons}>
-                <Ionicons name="md-menu" size={28} color="white" />
+            <TouchableOpacity style={styles.icons} onPress={() => navigation.openDrawer()}>
+                <View style={styles.btn__container}>
+                    <Ionicons name="md-menu" size={40} color="white" />
+                </View>
             </TouchableOpacity>
             <Text style={styles.title}>{title}</Text>
         </View>
@@ -31,8 +33,9 @@ const styles = StyleSheet.create({
     icons: {
         position: "absolute",
         left: 20,
-        top: 38
-      }
+        top: 12,
+        padding: 20
+    },
 })
 
 export default header;
