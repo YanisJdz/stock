@@ -61,15 +61,19 @@ class App extends React.Component {
         <View style={styles.container}>
           <View style={styles.content}>
               <Form />
-                  <FlatList
-                      showsVerticalScrollIndicator={false}
-                      data={this.state.stocks}
-                      renderItem={({item}) => 
-                      <StockItems item={item} navigation={this.props.navigation} deleteOneQuantity={this._deleteOneQuantity}/> 
-                  }
-                      keyExtractor={item => item.key}
-                  />
-          </View>
+              <View style={styles.addItem} >
+                <Button title="Ajouter un article dans vos stocks"/>
+
+              </View>
+              <FlatList
+                  showsVerticalScrollIndicator={false}
+                  data={this.state.stocks}
+                  renderItem={({item}) => 
+                  <StockItems item={item} navigation={this.props.navigation} deleteOneQuantity={this._deleteOneQuantity}/> 
+              }
+                  keyExtractor={item => item.key}
+              />
+        </View>
         </View>
         <Footer/>
       </View>
@@ -95,14 +99,15 @@ const styles = StyleSheet.create({
   },
   view:{
       backgroundColor: '#fff'
+  },
+
+  addItem: {
+    marginBottom: 40,
+    marginTop: 15
   }
 });
 
 
-
-const mapStateToProps = (state) => {
-  return state
-}
 
 export default App
 

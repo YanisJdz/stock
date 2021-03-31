@@ -30,6 +30,5 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     content : {
-      paddingBottom: 30,
     }
 });
