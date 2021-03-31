@@ -1,16 +1,21 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, Alert, View} from 'react-native'
 
-const StockItems = ({navigation, item}) => {
+class StockItems extends React.Component {
+
+  render() {
+    const {item, deleteOneQuantity} = this.props
+
     return (
-            <View style={styles.container}>
-                <TouchableOpacity onPress={() => alertBtn({item}) }>
-                    <Text style={styles.items}>{item.article} (Qte:{item.quantity})</Text>
-                </TouchableOpacity>
-            </View>
-            )
+      <View style={styles.container}>
+          <TouchableOpacity onPress={() => alertBtn({item}, {deleteOneQuantity}) }>
+              <Text style={styles.items}>{item.article} (Qte:{item.quantity})</Text>
+          </TouchableOpacity>
+      </View>
+    )
+  }          
 }
-const alertBtn = ({item}) =>
+const alertBtn = ({item}, {deleteOneQuantity}) =>
 Alert.alert(
   item.article,
   "Quantité = "+item.quantity,
@@ -24,18 +29,18 @@ Alert.alert(
       onPress: () => console.log("Cancel Pressed"),
       style: "cancel"
     },
-    { text: "Supprimer", onPress: () => console.log("Delete Pressed") }
+    { text: "Supprimer", onPress: () => deleteOneQuantity(item.key -1) }
   ],
   { cancelable: false }
 );
 
+
 const styles = StyleSheet.create({
     container: {
-        height: 50, 
         width: 300,
-        margin: 10,
     },
     items:{
+        marginBottom: 30,
         padding: 25,
         textAlign: 'center',
         borderColor:'#ccc2a6',

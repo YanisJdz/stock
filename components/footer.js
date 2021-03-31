@@ -13,7 +13,6 @@ const styles = StyleSheet.create({
       height: 10,
       backgroundColor: '#ccc2a6',
       paddingTop: 40,
-      marginTop: 20
     }
 })
 

@@ -5,12 +5,13 @@ export default class stocks extends Component {
     render() {
         return (
             <View style={styles.content}>
-                <Text>Liste des stocks actuel</Text>
+                <Text style={{paddingBottom: 7}}>Liste des stocks actuel</Text>
                 <TextInput
                     style={{ 
                         height: 40, 
                         borderColor: 'gray', 
-                        borderWidth: 1 
+                        borderWidth: 1,
+                        paddingLeft: 5 
                         
                     }}
                     placeholder = 'Produit...'
@@ -29,6 +30,6 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     content : {
-      padding: 40,
+      paddingBottom: 30,
     }
 });

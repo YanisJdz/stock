@@ -28,11 +28,11 @@ const showDialog = (item) => {
   }
 };
 
-const Liste_Course = () => {
+const Liste_Course = ({navigation}) => {
   return (
 
     <ScrollView style={styles.view}>
-      <Header title='Mes courses' />
+      <Header title='Mes courses' navigation={navigation} />
       <View style={styles.container}>
         <View>
             <View style={styles.list}>

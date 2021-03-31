@@ -20,9 +20,9 @@ const header = ({navigation, title}) =>  {
 
 const styles = StyleSheet.create({
     header: {
-      height: 80,
+      height: 100,
       backgroundColor: '#ccc2a6',
-      paddingTop: 40
+      paddingTop: 50
     },
     title:{
         textAlign: 'center',
@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     icons: {
         position: "absolute",
         left: 20,
-        top: 12,
+        top: 23,
         padding: 20
     },
 })
