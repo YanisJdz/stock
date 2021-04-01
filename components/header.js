@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View, Text, TouchableOpacity} from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity, Dimensions} from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { TouchableHighlight } from "react-native-gesture-handler";
 
@@ -20,21 +20,21 @@ const header = ({navigation, title}) =>  {
 
 const styles = StyleSheet.create({
     header: {
+        flexDirection: 'row',
       height: 100,
       backgroundColor: '#ccc2a6',
-      paddingTop: 50
+      paddingTop: 20,
+      alignItems: 'center'
     },
     title:{
+        paddingHorizontal: (Dimensions.get('window').width)/6,
         textAlign: 'center',
         color: 'white',
         fontSize: 20,
         fontWeight: 'bold',
     },
     icons: {
-        position: "absolute",
-        left: 20,
-        top: 23,
-        padding: 20
+        paddingLeft: (Dimensions.get('window').width)/20
     },
 })
 
