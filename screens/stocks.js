@@ -41,7 +41,6 @@ class App extends React.Component {
     var stateCopy = [...this.state.stocks];  
     stateCopy[key].quantity -= 1;
     this.setState({stocks : stateCopy })
-
   }
   
   render(){
@@ -54,7 +53,7 @@ class App extends React.Component {
           <View style={styles.content}>
               <Form />
               <View style={styles.addItem} >
-                <Button title="Ajouter un article dans vos stocks"/>
+                <Button color='#ccc2a6' title="Ajouter un article dans vos stocks"/>
 
               </View>
               <FlatList
@@ -76,10 +75,6 @@ class App extends React.Component {
 
 
 const styles = StyleSheet.create({
-  main_container: {
-    flex: 4,
-    backgroundColor: 'red'
-  },
 
   container: {
     flex: 1,
