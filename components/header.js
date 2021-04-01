@@ -8,10 +8,8 @@ const header = ({navigation, title}) =>  {
     return (
 
         <View style={styles.header}>
-            <TouchableOpacity style={styles.icons} onPress={() => navigation.openDrawer()}>
-                <View style={styles.btn__container}>
-                    <Ionicons name="md-menu" size={40} color="white" />
-                </View>
+            <TouchableOpacity hitSlop={{top: 30, bottom: 30, left: 30, right: 30}} style={styles.icons} onPress={() => navigation.openDrawer()}>
+                <Ionicons name="md-menu" size={40} color="white" />
             </TouchableOpacity>
             <Text style={styles.title}>{title}</Text>
         </View>
@@ -20,21 +18,24 @@ const header = ({navigation, title}) =>  {
 
 const styles = StyleSheet.create({
     header: {
-      height: 100,
-      backgroundColor: '#ccc2a6',
-      paddingTop: 50
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: 100,
+        backgroundColor: '#ccc2a6',
+        paddingTop: 50
     },
     title:{
-        textAlign: 'center',
+        fontFamily: 'Roboto',
+        alignSelf: 'center',
         color: 'white',
         fontSize: 20,
         fontWeight: 'bold',
+        backgroundColor: 'blue'
     },
     icons: {
-        position: "absolute",
-        left: 20,
-        top: 23,
-        padding: 20
+        width: 50
+        
+        
     },
 })
 

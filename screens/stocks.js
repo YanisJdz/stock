@@ -36,10 +36,6 @@ class App extends React.Component {
 
   }
 
-  quantityDown(key){
-    return {type: 'QTY_DOWN', key}
-  }
-  
 
   _deleteOneQuantity(key){
     var stateCopy = [...this.state.stocks];  
@@ -47,11 +43,7 @@ class App extends React.Component {
     this.setState({stocks : stateCopy })
 
   }
-
-  componentDidMount() {
-    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-  }
-
+  
   render(){
 
     return (
@@ -85,6 +77,7 @@ class App extends React.Component {
 
 const styles = StyleSheet.create({
   main_container: {
+    flex: 4,
     backgroundColor: 'red'
   },
 
