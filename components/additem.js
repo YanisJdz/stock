@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View, TextInput} from "react-native";
 
-const App = ({changeBackgroundOpacity}) => {
+const App = ({changeBackgroundOpacity, addItem, stocks}) => {
   const [modalVisible, setModalVisible] = useState(false);
-  console.log(modalVisible)
-
+  const [itemName, setItemName] = useState("")
+  const [itemQuantity, setItemQuantity] = useState("")
 
   createItem = (itemName, itemQuantity, stocks) => {
-    item = {
+    var item = {
       key: (stocks.length + 1).toString(), 
       article: itemName, 
       quantity: itemQuantity
@@ -33,46 +33,59 @@ const App = ({changeBackgroundOpacity}) => {
             <TextInput
                     style={{ 
                         height: 40, 
+                        width: '100%',
                         borderColor: 'gray', 
                         borderWidth: 1,
-                        paddingLeft: 5 
-                        
+                        paddingLeft: 5,
+                        marginBottom: 15                       
                     }}
                     placeholder = 'Produit...'
                     underlineColorAndroid = 'transparent'
+                    onChangeText={(itemName) => setItemName(itemName)}
+                    value={itemName}
+
                     />
             <Text style={styles.modalText}>Quantité</Text>
             <TextInput
                     style={{ 
                         height: 40, 
+                        width: '50%',
                         borderColor: 'gray', 
                         borderWidth: 1,
-                        paddingLeft: 5 
-                        
+                        paddingLeft: 5,
+                        textAlign: "center"
                     }}
-                    placeholder = 'Produit...'
+                    placeholder = 'Quantité...'
                     underlineColorAndroid = 'transparent'
-            />
+                    keyboardType={'number-pad'}
+                    onChangeText={(itemQuantity) => setItemQuantity(itemQuantity)}
+                    value={itemQuantity}
+                    />
+
 
             <Pressable
               style={[styles.button, styles.addItemButton]}
-              onPress={() => {}}
+              onPress={() => {addItem(createItem(itemName, itemQuantity, stocks)); setModalVisible(!modalVisible) }}
+              // onPress={() => {setModalVisible(!modalVisible) ;changeBackgroundOpacity()}}
             >
               <Text style={styles.textStyle}>Ajouter cet article à vos stocks</Text>
-            </Pressable>
+            </Pressable>        
+
 
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => {setModalVisible(!modalVisible) ;changeBackgroundOpacity() }}
+              onPress={() => {setModalVisible(!modalVisible) }}
+              // onPress={() => {setModalVisible(!modalVisible) ;changeBackgroundOpacity()}}
             >
-              <Text style={styles.textStyle}>Close</Text>
+              <Text style={styles.textStyle}>Fermer</Text>
             </Pressable>
           </View>
         </View>
       </Modal>
       <Pressable
         style={[styles.button, styles.buttonOpen]}
-        onPress={() => {setModalVisible(true)  ;changeBackgroundOpacity()}}
+        onPress={() => {setModalVisible(!modalVisible) }}
+        // onPress={() => {setModalVisible(true) ;changeBackgroundOpacity() }}
       >
         <Text style={styles.textStyle}>Ajouter un produit</Text>
       </Pressable>
@@ -107,12 +120,13 @@ const styles = StyleSheet.create({
     backgroundColor: "#ccc2a6",
   },
   buttonClose: {
+    marginTop: 20,
     backgroundColor: "#ccc2a6",
   },
   
   addItemButton: {
     marginTop: 20,
-    marginBottom: 20,
+    marginBottom: 10,
     backgroundColor: "#ccc2a6",
   },
 

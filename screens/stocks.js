@@ -22,18 +22,12 @@ class App extends React.Component {
         { key: '3', article: 'Mikados', quantity: 10 },
         { key: '4', article: "Huile d'olive", quantity: 3 },
         { key: '5', article: "Papier toilette", quantity: 4 },
-        { key: '6', article: "Céréales", quantity: 2 },
-        { key: '7', article: "Pack d'eau", quantity: 4 },
-        { key: '8', article: "Pack d'eau", quantity: 4 },
-        { key: '9', article: "Pack d'eau", quantity: 4 },
-        { key: '10', article: "Pack d'eau", quantity: 4 },
-        { key: '11', article: "Pack d'eau", quantity: 4 },
-        { key: '12', article: "Pack d'eau", quantity: 4 },
-        { key: '13', article: "Pack d'eau", quantity: 4 }
       ],
       modal: false,
     }
     this._deleteOneQuantity = this._deleteOneQuantity.bind(this)
+    this._addOneQuantity = this._addOneQuantity.bind(this)
+
     this._changeBackgroundOpacity = this._changeBackgroundOpacity.bind(this)
     this._addItem = this._addItem.bind(this)
 
@@ -41,9 +35,14 @@ class App extends React.Component {
 
   _addItem(item){
     var stateCopy = [...this.state.stocks];  
-    var newStocks = [...stateCopy, ...item];
+    var newStocks = [...stateCopy, item];
     this.setState({stocks: newStocks})
+  }
 
+  _addOneQuantity(key){
+    var stateCopy = [...this.state.stocks];  
+    stateCopy[key].quantity += 1;
+    this.setState({stocks : stateCopy })
   }
 
 
@@ -70,7 +69,7 @@ class App extends React.Component {
   render(){
     return (
       
-      <View style={this.state.modal ? styles.opacityview : styles.clearview}>
+      <View style={styles.clearview}>
         <Header title='Liste de stocks' style={styles.main_container} navigation={this.props.navigation}/>
         <View style={styles.container}>
           <View style={styles.content}>
@@ -82,7 +81,7 @@ class App extends React.Component {
                   showsVerticalScrollIndicator={false}
                   data={this.state.stocks}
                   renderItem={({item}) => 
-                  <StockItems item={item} navigation={this.props.navigation} deleteOneQuantity={this._deleteOneQuantity} /> 
+                  <StockItems item={item} navigation={this.props.navigation} deleteOneQuantity={this._deleteOneQuantity} addOneQuantity={this._addOneQuantity}/> 
               }
                   keyExtractor={item => item.key}
               />
@@ -99,12 +98,8 @@ class App extends React.Component {
 const styles = StyleSheet.create({
   clearview:{
     flex: 1,
-    opacity: 1
   },
-  opacityview:{
-    flex: 1,
-    opacity: 0.3
-  },
+  
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -122,7 +117,6 @@ const styles = StyleSheet.create({
     marginBottom: 40,
     marginTop: 15,
   },
-
 });
 
 
