@@ -23,10 +23,11 @@ const App = ({changeBackgroundOpacity}) => {
             <TextInput
                     style={{ 
                         height: 40, 
+                        width: '100%',
                         borderColor: 'gray', 
                         borderWidth: 1,
-                        paddingLeft: 5 
-                        
+                        paddingLeft: 5,
+                        marginBottom: 15                       
                     }}
                     placeholder = 'Produit...'
                     underlineColorAndroid = 'transparent'
@@ -35,17 +36,20 @@ const App = ({changeBackgroundOpacity}) => {
             <TextInput
                     style={{ 
                         height: 40, 
+                        width: '50%',
                         borderColor: 'gray', 
                         borderWidth: 1,
-                        paddingLeft: 5 
-                        
+                        paddingLeft: 5,
+                        textAlign: "center"
                     }}
-                    placeholder = 'Produit...'
+                    placeholder = 'Quantité...'
                     underlineColorAndroid = 'transparent'
+                    keyboardType={'number-pad'}
                     />
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => {setModalVisible(!modalVisible) ;changeBackgroundOpacity() }}
+              onPress={() => {setModalVisible(!modalVisible) }}
+              // onPress={() => {setModalVisible(!modalVisible) ;changeBackgroundOpacity()}}
             >
               <Text style={styles.textStyle}>Close</Text>
             </Pressable>
@@ -54,7 +58,8 @@ const App = ({changeBackgroundOpacity}) => {
       </Modal>
       <Pressable
         style={[styles.button, styles.buttonOpen]}
-        onPress={() => {setModalVisible(true)  ;changeBackgroundOpacity()}}
+        onPress={() => {setModalVisible(true)}}
+        // onPress={() => {setModalVisible(true) ;changeBackgroundOpacity() }}
       >
         <Text style={styles.textStyle}>Ajouter un produit</Text>
       </Pressable>
@@ -89,6 +94,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ccc2a6",
   },
   buttonClose: {
+    marginTop: 25,
     backgroundColor: "#ccc2a6",
   },
   textStyle: {
