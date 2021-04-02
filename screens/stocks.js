@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, ScrollView, Button, SafeAreaView } from 'react-native';
+import { StyleSheet, Text, View, Pressable, Button, Dimensions } from 'react-native';
 import Form from '../components/Form';
 import Header from '../components/header';
 import StockItems from "../components/stockitems"
 import Footer from '../components/footer'
+import AddItem from '../components/additem'
 import { FlatList } from 'react-native-gesture-handler';
-
+import { LogBox } from 'react-native';
 
 
 
@@ -30,8 +31,18 @@ class App extends React.Component {
         { key: '12', article: "Pack d'eau", quantity: 4 },
         { key: '13', article: "Pack d'eau", quantity: 4 }
       ],
+      modal: false,
     }
     this._deleteOneQuantity = this._deleteOneQuantity.bind(this)
+    this._changeBackgroundOpacity = this._changeBackgroundOpacity.bind(this)
+    this._addItem = this._addItem.bind(this)
+
+  }
+
+  _addItem(item){
+    var stateCopy = [...this.state.stocks];  
+    var newStocks = [...stateCopy, ...item];
+    this.setState({stocks: newStocks})
 
   }
 
@@ -41,25 +52,37 @@ class App extends React.Component {
     stateCopy[key].quantity -= 1;
     this.setState({stocks : stateCopy })
   }
+
+  _changeBackgroundOpacity(){
+    this.componentDidMount()
+    if(this.state.modal == false){
+      this.setState({modal : true })
+    }
+    else{
+      this.setState({modal : false })
+    }
+  }
+
+  componentDidMount() {
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }
   
   render(){
-
     return (
-
-      <View style={{flex: 1}}>
+      
+      <View style={this.state.modal ? styles.opacityview : styles.clearview}>
         <Header title='Liste de stocks' style={styles.main_container} navigation={this.props.navigation}/>
         <View style={styles.container}>
           <View style={styles.content}>
               <Form />
               <View style={styles.addItem} >
-                <Button color='#ccc2a6' title="Ajouter un article dans vos stocks" onPress/>
-
+                <AddItem style={styles.modal} changeBackgroundOpacity = {this._changeBackgroundOpacity} addItem = {this._addItem} stocks={this.state.stocks}/>
               </View>
               <FlatList
                   showsVerticalScrollIndicator={false}
                   data={this.state.stocks}
                   renderItem={({item}) => 
-                  <StockItems item={item} navigation={this.props.navigation} deleteOneQuantity={this._deleteOneQuantity}/> 
+                  <StockItems item={item} navigation={this.props.navigation} deleteOneQuantity={this._deleteOneQuantity} /> 
               }
                   keyExtractor={item => item.key}
               />
@@ -74,7 +97,14 @@ class App extends React.Component {
 
 
 const styles = StyleSheet.create({
-
+  clearview:{
+    flex: 1,
+    opacity: 1
+  },
+  opacityview:{
+    flex: 1,
+    opacity: 0.3
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',
@@ -90,8 +120,9 @@ const styles = StyleSheet.create({
 
   addItem: {
     marginBottom: 40,
-    marginTop: 15
-  }
+    marginTop: 15,
+  },
+
 });
 
 

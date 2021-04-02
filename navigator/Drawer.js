@@ -56,6 +56,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row'
     },
     drawerHeaderText: {
+        fontFamily: 'Roboto',
         color: 'white',
         fontSize: 24,
         fontWeight: 'bold'
