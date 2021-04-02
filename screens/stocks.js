@@ -5,8 +5,7 @@ import Header from '../components/header';
 import StockItems from "../components/stockitems"
 import Footer from '../components/footer'
 import { FlatList } from 'react-native-gesture-handler';
-import {connect} from 'react-redux'
-import { LogBox } from 'react-native';
+
 
 
 
@@ -53,7 +52,7 @@ class App extends React.Component {
           <View style={styles.content}>
               <Form />
               <View style={styles.addItem} >
-                <Button color='#ccc2a6' title="Ajouter un article dans vos stocks"/>
+                <Button color='#ccc2a6' title="Ajouter un article dans vos stocks" onPress/>
 
               </View>
               <FlatList
