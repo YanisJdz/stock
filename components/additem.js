@@ -49,7 +49,7 @@ const App = ({changeBackgroundOpacity}) => {
             <Pressable
               style={[styles.button, styles.buttonClose]}
               onPress={() => {setModalVisible(!modalVisible) }}
-              // onPress={() => {setModalVisible(!modalVisible) ;changeBackgroundOpacity()}}
+              // onPress={() => {setModalVisible(!modalVisible) ;changeBackgroundOpacity()}} => A remettre si présentation sur téléphone (fonction bugg'd)
             >
               <Text style={styles.textStyle}>Close</Text>
             </Pressable>
