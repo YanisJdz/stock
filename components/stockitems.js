@@ -7,11 +7,11 @@ import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 class StockItems extends React.Component {
 
   render() {
-    const {item, deleteOneQuantity, addOneQuantity} = this.props
+    const {item, deleteOneQuantity, addOneQuantity, deleteItem} = this.props
 
     return (
           <View style={styles.item_container}>
-            <TouchableOpacity style={styles.items} onPress={() => alertBtn({item}, {deleteOneQuantity}) }>
+            <TouchableOpacity style={styles.items} onPress={() => alertBtn({item}, {deleteItem}) }>
                 <Text style={styles.article_text}>{item.article} (Qte:{item.quantity})</Text>
                 
                 <View style={styles.icon__container}>
@@ -29,7 +29,7 @@ class StockItems extends React.Component {
     )
   }          
 }
-const alertBtn = ({item}, {deleteOneQuantity}) =>
+const alertBtn = ({item}, {deleteItem}) =>
 Alert.alert(
   item.article,
   "Quantité = "+item.quantity,
@@ -43,7 +43,7 @@ Alert.alert(
       onPress: () => console.log("Cancel Pressed"),
       style: "cancel"
     },
-    { text: "Supprimer", onPress: () => deleteOneQuantity(item.key -1) }
+    { text: "Supprimer", onPress: () => deleteItem(item.key - 1) }
   ],
   { cancelable: false }
 );

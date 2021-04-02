@@ -25,8 +25,10 @@ class App extends React.Component {
       ],
       modal: false,
     }
+
     this._deleteOneQuantity = this._deleteOneQuantity.bind(this)
     this._addOneQuantity = this._addOneQuantity.bind(this)
+    this._deleteItem = this._deleteItem.bind(this)
 
     this._changeBackgroundOpacity = this._changeBackgroundOpacity.bind(this)
     this._addItem = this._addItem.bind(this)
@@ -51,6 +53,19 @@ class App extends React.Component {
     stateCopy[key].quantity -= 1;
     this.setState({stocks : stateCopy })
   }
+
+  _deleteItem(key){
+    var stateCopy = [...this.state.stocks];  
+    if (key >= 0 && key <= stateCopy.length) {
+      stateCopy.splice(key, 1)
+      for(let i = key; i < stateCopy.length; i++ ){
+        stateCopy[i]['key'] -= '1'
+      }
+      
+      this.setState({stocks : stateCopy })
+    }
+  }
+
 
   _changeBackgroundOpacity(){
     this.componentDidMount()
@@ -81,7 +96,7 @@ class App extends React.Component {
                   showsVerticalScrollIndicator={false}
                   data={this.state.stocks}
                   renderItem={({item}) => 
-                  <StockItems item={item} navigation={this.props.navigation} deleteOneQuantity={this._deleteOneQuantity} addOneQuantity={this._addOneQuantity}/> 
+                  <StockItems item={item} navigation={this.props.navigation} deleteOneQuantity={this._deleteOneQuantity} addOneQuantity={this._addOneQuantity} deleteItem={this._deleteItem}/> 
               }
                   keyExtractor={item => item.key}
               />

@@ -21,7 +21,7 @@ const tab_Course = [
 const showDialog = (item) => {
   let number = Number(prompt("La quantité du produit acheté :"));
   if(typeof number === "number" && !number == 0) {
-    console.log("Vous avez acheté "+number+" quantité "+item);
+    console.log("Vous avez acheté "+number+" quantité " + item);
 
     // Ajout de la quantité dans la liste de stocks
     // Suppression du produit de la liste de course
