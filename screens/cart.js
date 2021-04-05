@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Text, View, StyleSheet, Pressable, ScrollView, Alert } from 'react-native';
-import { FlatList } from 'react-native-gesture-handler';
+import { FlatList, TouchableOpacity } from 'react-native-gesture-handler';
+import { Ionicons } from "@expo/vector-icons";
+
 import Header from '../components/header';
 import Footer from '../components/footer';
 
@@ -20,10 +22,10 @@ const tab_Course = [
 
 const Cart = ({navigation}) => {
 
-  const [curt_array, SetTab_Course] = useState(tab_Course)
+  const [cart, SetTab_Course] = useState(tab_Course)
   const removeItem = id => {
     console.log("vous avez supprimé "+id)
-    const newList = curt_array.filter((item) => item.id !== id)
+    const newList = cart.filter((item) => item.id !== id)
 
     SetTab_Course(newList);
   };
@@ -65,37 +67,39 @@ const Cart = ({navigation}) => {
     );
   }
 
-  if (curt_array.length == 0) {
+  if (cart.length == 0) {
     return (
-      <ScrollView style={styles.view}>
-      <Header title='Mes courses' />
-      <View style={styles.container}>
-          <Text>La liste de course est vide</Text>
+      <View style={styles.clearView}>
+        <Header title='Mes courses' />
+        <View style={styles.container}>
+            <Text>La liste de course est vide</Text>
+        </View>
+        <Footer/>
       </View>
-      <Footer/>
-    </ScrollView>
     )
   }
 
   else {
     return (
-      <ScrollView style={styles.view}>
-      <Header title='Mes courses' navigation={navigation} />
-      <View style={styles.container}>
-        <View>
-            <View style={styles.list}>
-            <FlatList data={curt_array} 
-                keyExtractor={(item) => item.id} 
-                renderItem={({item}) => <Text style={{fontSize : 15, padding: 9}}>
-                <Pressable onPress={() => confirmBeforeDelete(item.id)}><Text> X  </Text></Pressable>{item.nom_produit}
-                <Pressable onPress={() => showDialog(item.id)}><Text>  ✅   </Text>
-                </Pressable></Text>
-                }/>
-            </View>  
+      <View style={styles.clearView}>
+        <Header title='Mes courses' navigation={navigation} />
+        <View style={styles.container}>
+          <FlatList data={cart} 
+              showsVerticalScrollIndicator={false}
+              keyExtractor={(item) => item.id} 
+              renderItem={({item}) =>
+              <View style={styles.item__container}>
+                <TouchableOpacity style={styles.del__button} onPress={() => confirmBeforeDelete(item.id)}>
+                  <Ionicons name="trash-outline" size={24} color="black" />
+                </TouchableOpacity>
+                <Text>{item.nom_produit}</Text>
+                <Pressable onPress={() => showDialog(item.id)}><Text>  ✅   </Text></Pressable>
+              </View> 
+              }
+          />
         </View>
-      </View>
       <Footer/>
-    </ScrollView>
+    </View>
     )
 
   }
@@ -105,11 +109,32 @@ const Cart = ({navigation}) => {
 
 
 const styles = StyleSheet.create({ 
+    clearView: {
+      flex: 1
+    },
+  
     container: { 
       flex: 1, 
       paddingTop: 30, 
       alignItems: "center",
       justifyContent: "center",
+    },
+    
+    item__container : {
+      flex: 1,
+      flexDirection: 'row',
+      justifyContent: 'space-evenly',
+      marginBottom: 20,
+      padding: 20,
+      paddingLeft: 40,
+      paddingRight: 40,
+      textAlign: 'center',
+      borderColor:'#ccc2a6',
+      borderWidth: 1,
+    },
+
+    del__button: {
+      alignSelf: 'flex-start',
     }
 });
 

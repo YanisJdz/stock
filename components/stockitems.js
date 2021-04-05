@@ -1,7 +1,6 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, Alert, View} from 'react-native'
 import { Ionicons } from "@expo/vector-icons";
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
 
 
 class StockItems extends React.Component {

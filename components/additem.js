@@ -8,9 +8,11 @@ const App = ({changeBackgroundOpacity, addItem, stocks}) => {
 
   createItem = (itemName, itemQuantity, stocks) => {
     var item = {
+      //Convert key to string, since we determine the right based on the old stock list's length
       key: (stocks.length + 1).toString(), 
       article: itemName, 
-      quantity: itemQuantity
+      //Convert quantity to int because we get a string from the form
+      quantity: parseInt(itemQuantity)
     }  
     return item
   }

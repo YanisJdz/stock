@@ -43,6 +43,9 @@ class App extends React.Component {
 
   _addOneQuantity(key){
     var stateCopy = [...this.state.stocks];  
+    console.log(typeof(stateCopy[key].quantity))
+    let oldQty = parseInt(stateCopy[key].quantity)
+    let newQty = (oldQty + 1).toString()
     stateCopy[key].quantity += 1;
     this.setState({stocks : stateCopy })
   }
@@ -51,15 +54,35 @@ class App extends React.Component {
   _deleteOneQuantity(key){
     var stateCopy = [...this.state.stocks];  
     stateCopy[key].quantity -= 1;
-    this.setState({stocks : stateCopy })
+    //Thats the cool way to write it, my man
+    !stateCopy[key].quantity ? this._deleteItem(key) : this.setState({stocks : stateCopy })
+
+    //Thats the old way
+    /*
+    if (!stateCopy[key].quantity){
+      this._deleteItem(key)
+    }
+    else {
+      this.setState({stocks : stateCopy })
+    }
+    */
+    
   }
 
   _deleteItem(key){
+    //Make Copy of current state
     var stateCopy = [...this.state.stocks];  
+    //Check if key is right as it should be
     if (key >= 0 && key <= stateCopy.length) {
+      //Get selected item out of the list
       stateCopy.splice(key, 1)
+      //Here we'll need to reassign all the keys from item's list
+      //Splice method changes the index of every item, but we base our methods on a hard coded key index for future database
+      //Thus, we need to modify all consecutive keys by hand, starting at the old position of our deleted item 
       for(let i = key; i < stateCopy.length; i++ ){
-        stateCopy[i]['key'] -= '1'
+        //Convert key to int since its a string, then convert the result to string again
+        let newKey = (parseInt(stateCopy[i]['key'] - 1).toString())
+        stateCopy[i]['key'] = newKey
       }
       
       this.setState({stocks : stateCopy })
@@ -93,14 +116,14 @@ class App extends React.Component {
                 <AddItem style={styles.modal} changeBackgroundOpacity = {this._changeBackgroundOpacity} addItem = {this._addItem} stocks={this.state.stocks}/>
               </View>
               <FlatList
-                  showsVerticalScrollIndicator={false}
-                  data={this.state.stocks}
-                  renderItem={({item}) => 
-                  <StockItems item={item} navigation={this.props.navigation} deleteOneQuantity={this._deleteOneQuantity} addOneQuantity={this._addOneQuantity} deleteItem={this._deleteItem}/> 
-              }
-                  keyExtractor={item => item.key}
+                showsVerticalScrollIndicator={false}
+                data={this.state.stocks}
+                keyExtractor={item => item.key}
+                renderItem={({item}) => 
+                <StockItems item={item} navigation={this.props.navigation} deleteOneQuantity={this._deleteOneQuantity} addOneQuantity={this._addOneQuantity} deleteItem={this._deleteItem}/> 
+                }
               />
-        </View>
+          </View>
         </View>
         <Footer/>
       </View>
