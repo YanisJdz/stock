@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View, TextInput} from "react-native";
 
-const App = ({changeBackgroundOpacity, addItem, stocks}) => {
+const Popup = ({changeBackgroundOpacity, addItem, stocks}) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [itemName, setItemName] = useState("")
   const [itemQuantity, setItemQuantity] = useState("")
@@ -149,4 +149,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default App;
+export default Popup;

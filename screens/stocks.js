@@ -43,9 +43,6 @@ class App extends React.Component {
 
   _addOneQuantity(key){
     var stateCopy = [...this.state.stocks];  
-    console.log(typeof(stateCopy[key].quantity))
-    let oldQty = parseInt(stateCopy[key].quantity)
-    let newQty = (oldQty + 1).toString()
     stateCopy[key].quantity += 1;
     this.setState({stocks : stateCopy })
   }
@@ -70,6 +67,8 @@ class App extends React.Component {
   }
 
   _deleteItem(key){
+    //Our keys start at one but our list index starts at 0
+    key -= 1;
     //Make Copy of current state
     var stateCopy = [...this.state.stocks];  
     //Check if key is right as it should be
@@ -111,9 +110,9 @@ class App extends React.Component {
         <Header title='Liste de stocks' style={styles.main_container} navigation={this.props.navigation}/>
         <View style={styles.container}>
           <View style={styles.content}>
-              <Form />
+              <Form title="Cherchez dans vos stocks" />
               <View style={styles.addItem} >
-                <AddItem style={styles.modal} changeBackgroundOpacity = {this._changeBackgroundOpacity} addItem = {this._addItem} stocks={this.state.stocks}/>
+                <AddItem addItem = {this._addItem} stocks={this.state.stocks}/>
               </View>
               <FlatList
                 showsVerticalScrollIndicator={false}

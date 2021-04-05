@@ -39,7 +39,7 @@ Alert.alert(
     },
     {
       text: "Annuler",
-      onPress: () => console.log("Cancel Pressed"),
+      onPress: () => {},
       style: "cancel"
     },
     { text: "Supprimer", onPress: () => deleteItem(item.key - 1) }

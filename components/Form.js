@@ -5,7 +5,7 @@ export default class stocks extends Component {
     render() {
         return (
             <View style={styles.content}>
-                <Text style={{paddingBottom: 7}}>Liste des stocks actuel</Text>
+                <Text style={{paddingBottom: 7}}>{this.props.title}</Text>
                 <TextInput
                     style={{ 
                         height: 40, 

@@ -38,7 +38,7 @@ const Drawer = createDrawerNavigator();
 function MyDrawer() {
   return (
     <Drawer.Navigator backBehavior="history" drawerContent={props => <CustomDrawerContent {...props} />}>
-      <Drawer.Screen name="Mes stocks" component={Stocks} />
+      <Drawer.Screen name="Mes stocks" component={Stocks} params={ {user: 'jane'} }/>
       <Drawer.Screen name="Ma liste" component={cart} />
     </Drawer.Navigator>
   );
