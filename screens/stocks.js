@@ -17,11 +17,7 @@ class App extends React.Component {
     super(props)
     this.state = {
       stocks : [
-        { key: '1', article: 'Bouteille de lait', quantity: 5 },
-        { key: '2', article: 'Pain de mie', quantity: 3 },
-        { key: '3', article: 'Mikados', quantity: 10 },
-        { key: '4', article: "Huile d'olive", quantity: 3 },
-        { key: '5', article: "Papier toilette", quantity: 4 },
+       
       ],
       modal: false,
     }
