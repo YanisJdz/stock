@@ -1,16 +1,52 @@
 import React from 'react'
 import { StyleSheet, Text, TouchableOpacity, Alert, View} from 'react-native'
 import { Ionicons } from "@expo/vector-icons";
+import { connect } from 'react-redux';
+
 
 
 class StockItems extends React.Component {
+  
+
+  _alertBtn = (item, deleteItem) =>
+  Alert.alert(
+    item.article,
+    "Quantité = "+item.quantity,
+    [
+      {
+        text: "Annuler",
+        onPress: () => {},
+        style: "cancel"
+      },
+      {
+        text: "Ajouter à la liste de course",
+        onPress: () => {this._addItem(item.article)},
+      },
+      { text: "Supprimer", onPress: () => deleteItem(item.key) }
+    ],
+    { cancelable: false }
+  );
+
+  _addItem = (itemName) => {
+    const action = { type: "ADD_TO_CART", value: this._createItem(itemName, this.props.cart)}
+    this.props.dispatch(action)
+  }
+
+  _createItem = (itemName, cart) => {
+    var item = {
+        //Convert key to string, since we determine the right based on the old stock list's length
+        id: (cart.length + 1).toString(), 
+        nom_produit: itemName, 
+    }  
+    return item
+  }
 
   render() {
     const {item, deleteOneQuantity, addOneQuantity, deleteItem} = this.props
 
     return (
           <View style={styles.item_container}>
-            <TouchableOpacity style={styles.items} onPress={() => alertBtn({item}, {deleteItem}) }>
+            <TouchableOpacity style={styles.items} onPress={() => this._alertBtn(item, deleteItem) }>
                 <Text style={styles.article_text}>{item.article} (Qte:{item.quantity})</Text>
                 
                 <View style={styles.icon__container}>
@@ -26,26 +62,8 @@ class StockItems extends React.Component {
             
           </View>
     )
-  }          
-}
-const alertBtn = ({item}, {deleteItem}) =>
-Alert.alert(
-  item.article,
-  "Quantité = "+item.quantity,
-  [
-    {
-      text: "Modifier",
-      onPress: () => console.log(item)
-    },
-    {
-      text: "Annuler",
-      onPress: () => {},
-      style: "cancel"
-    },
-    { text: "Supprimer", onPress: () => deleteItem(item.key - 1) }
-  ],
-  { cancelable: false }
-);
+  } 
+}           
 
 
 const styles = StyleSheet.create({
@@ -82,4 +100,9 @@ const styles = StyleSheet.create({
     }
 })
 
-export default StockItems
+const mapStateToProps = (state) => {
+  return {cart: state.cart}
+}
+
+
+export default connect(mapStateToProps)(StockItems);
