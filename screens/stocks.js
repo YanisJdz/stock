@@ -7,6 +7,8 @@ import Footer from '../components/footer'
 import AddItem from '../components/additem'
 import { FlatList } from 'react-native-gesture-handler';
 import { LogBox } from 'react-native';
+import { connect } from 'react-redux';
+
 
 
 
@@ -25,8 +27,6 @@ class App extends React.Component {
     this._deleteOneQuantity = this._deleteOneQuantity.bind(this)
     this._addOneQuantity = this._addOneQuantity.bind(this)
     this._deleteItem = this._deleteItem.bind(this)
-
-    this._changeBackgroundOpacity = this._changeBackgroundOpacity.bind(this)
     this._addItem = this._addItem.bind(this)
 
   }
@@ -48,7 +48,7 @@ class App extends React.Component {
     var stateCopy = [...this.state.stocks];  
     stateCopy[key].quantity -= 1;
     //Thats the cool way to write it, my man
-    !stateCopy[key].quantity ? this._deleteItem(key) : this.setState({stocks : stateCopy })
+    !stateCopy[key].quantity ? this._deleteItem(key + 1) : this.setState({stocks : stateCopy })
 
     //Thats the old way
     /*
@@ -83,23 +83,9 @@ class App extends React.Component {
       this.setState({stocks : stateCopy })
     }
   }
-
-
-  _changeBackgroundOpacity(){
-    this.componentDidMount()
-    if(this.state.modal == false){
-      this.setState({modal : true })
-    }
-    else{
-      this.setState({modal : false })
-    }
-  }
-
-  componentDidMount() {
-    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-  }
   
   render(){
+    console.log(this.state)
     return (
       
       <View style={styles.clearview}>
@@ -154,5 +140,4 @@ const styles = StyleSheet.create({
 
 
 
-export default App
-
+export default App;
