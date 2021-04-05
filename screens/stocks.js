@@ -44,7 +44,6 @@ class App extends React.Component {
   _addOneQuantity(key){
     var stateCopy = [...this.state.stocks];  
     stateCopy[key].quantity += 1;
-    console.log(stateCopy[key].quantity)
     this.setState({stocks : stateCopy })
   }
 
@@ -53,7 +52,7 @@ class App extends React.Component {
     var stateCopy = [...this.state.stocks];  
     stateCopy[key].quantity -= 1;
     //Thats the cool way to write it, my man
-    !stateCopy[key].quantity ? this._deleteItem(key) : this.setState({stocks : stateCopy })
+    !stateCopy[key].quantity ? this._deleteItem(key + 1) : this.setState({stocks : stateCopy })
 
     //Thats the old way
     /*
